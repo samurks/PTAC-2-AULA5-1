@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 export default function ToDo() {
    const[atividade, setAtividade] = useState("");
    const[lista, setLista] = useState([]);
-const [id, setId] = useState()
+const [id, setId] = useState(1)
    const salvar = (e) => {
     e.preventDefault();
     setLista([...lista,{
        atividade:atividade, id:id}]);
         console.log(lista)
-        setId(1+1)
+        setId(id+1)
     };
 
     return (
@@ -24,8 +24,7 @@ const [id, setId] = useState()
             onChange={(e)=>{setAtividade(e.target.value)}}/>
             <button>ADD</button>
             </form>
-            {id.map((id)=> <p>{id.id}</p>)}
-            {lista.map((ativ)=> <p>{ativ.atividade}</p>)}
+            {lista.map((ativ)=> <p key={ativ.id}> {ativ.atividade}</p>)}
         </div>
     );
 }
